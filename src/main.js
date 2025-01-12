@@ -25,19 +25,23 @@ const formElement = document.querySelector("form");
 const preloaderElement = document.querySelector(".loader");
 
 const submitQuery = formElement.addEventListener("submit", event => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const formData = new FormData(formElement);
+    const formData = new FormData(formElement); 
     const searchQuery = formData.get("search-query");
 
-    // Перевірка на пусте поле та пробіли
+    // Перевірка на пусте поле та пробіли в запиті
     if (!searchQuery.trim()) {
         alert('Please enter the search query')
         return
     }
 
-     preloaderElement.removeAttribute('hidden')
+    // Чистимо галерею від попереднього запиту та показуємо прелоадер
+    galleryEl.innerHTML = '';
+    preloaderElement.removeAttribute('hidden')
 
+
+    // Робимо запит
     getImages(searchQuery)
         .then(data => {
             preloaderElement.setAttribute('hidden', '');

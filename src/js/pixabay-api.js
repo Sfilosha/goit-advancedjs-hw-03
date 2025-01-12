@@ -3,7 +3,7 @@ const apiParams = new URLSearchParams({
     image_type: "photo",
     orientation: "horizontal",
     safesearch: "true"
-})
+});
 
 export const getImages = searchQuery => {
     return fetch(`https://pixabay.com/api/?${apiParams}&q=${searchQuery}`)
